@@ -4,9 +4,7 @@ A comprehensive statistical analysis of global health and well-being indicators 
 
 ## 🌐 Live Analysis Dashboard
 
-**View the interactive analysis:** [https://[your-username].github.io/AI-course-analysis/analysis-output-files/](https://[your-username].github.io/AI-course-analysis/analysis-output-files/)
-
-*Replace `[your-username]` with your actual GitHub username after publishing*
+**View the interactive analysis:** [https://hcprieto.github.io/AI-course-analysis/analysis-output-files/](https://hcprieto.github.io/AI-course-analysis/analysis-output-files/)
 
 ## 📊 Analysis Overview
 
@@ -168,6 +166,6 @@ This project is for educational purposes. Data source attributions are maintaine
 
 ---
 
-**View the live analysis:** [GitHub Pages Link](https://[your-username].github.io/AI-course-analysis/analysis-output-files/)
+**View the live analysis:** [GitHub Pages Link](https://hcprieto.github.io/AI-course-analysis/analysis-output-files/)
 
 *Generated using Claude Code for comprehensive statistical analysis*
