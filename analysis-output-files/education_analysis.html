@@ -1,0 +1,511 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Education Analysis - Global Thriving Study</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+            h1 {
+                color: #2c3e50;
+                border-bottom: 3px solid #e67e22;
+                padding-bottom: 10px;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            h2 {
+                color: #34495e;
+                border-left: 4px solid #e67e22;
+                padding-left: 15px;
+                margin-top: 40px;
+            }
+            h3 {
+                color: #2c3e50;
+                margin-top: 25px;
+            }
+            .navigation {
+                background-color: #ecf0f1;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .navigation a {
+                display: inline-block;
+                margin: 5px 10px;
+                padding: 10px 20px;
+                background-color: #e67e22;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+            .navigation a:hover {
+                background-color: #d35400;
+            }
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin: 20px 0;
+            }
+            .stat-card {
+                background-color: #fdf2e9;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                border-left: 4px solid #e67e22;
+            }
+            .stat-number {
+                font-size: 2em;
+                font-weight: bold;
+                color: #2c3e50;
+                display: block;
+            }
+            .stat-label {
+                color: #7f8c8d;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            .chart-container {
+                text-align: center;
+                margin: 30px 0;
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                border: 1px solid #dee2e6;
+            }
+            .chart-container img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .chart-title {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #2c3e50;
+                margin-bottom: 15px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.9em;
+            }
+            th, td {
+                border: 1px solid #bdc3c7;
+                padding: 10px;
+                text-align: left;
+            }
+            th {
+                background-color: #e67e22;
+                color: white;
+                font-weight: bold;
+            }
+            tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+            .highlight {
+                background-color: #fff3cd;
+                border: 1px solid #ffeaa7;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 20px 0;
+            }
+            .success {
+                background-color: #d4edda;
+                border: 1px solid #c3e6cb;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 20px 0;
+            }
+            .alert {
+                background-color: #f8d7da;
+                border: 1px solid #f5c6cb;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 20px 0;
+            }
+            .correlation-strong { background-color: #d4edda; }
+            .correlation-moderate { background-color: #fff3cd; }
+            .correlation-weak { background-color: #f8d7da; }
+            .ranking-table {
+                background-color: #fdf2e9;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+            }
+            .outlier-card {
+                background-color: #fff3cd;
+                border: 1px solid #ffeaa7;
+                border-radius: 5px;
+                padding: 10px;
+                margin: 10px 0;
+            }
+            .footer {
+                margin-top: 50px;
+                padding-top: 20px;
+                border-top: 1px solid #bdc3c7;
+                color: #7f8c8d;
+                font-size: 0.9em;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="navigation">
+                <a href="index.html">← Back to Dashboard</a>
+                <a href="enhanced_health_analysis.html">🏥 Health Analysis</a>
+                <a href="#executive-summary">Executive Summary</a>
+                <a href="#overview">Education Overview</a>
+                <a href="#regional">Regional Analysis</a>
+                <a href="#correlations">Correlations</a>
+                <a href="#outliers">Outliers</a>
+            </div>
+
+            <h1>📚 Education Analysis: Learning-Adjusted Years of School</h1>
+            <p style="text-align: center;"><strong>Analysis Date:</strong> September 17, 2025</p>
+
+            <div class="highlight">
+                <h3>Key Research Questions</h3>
+                <ul>
+                    <li>What is the average number of learning-adjusted school years across countries?</li>
+                    <li>How does educational attainment correlate with GDP per capita and life expectancy?</li>
+                    <li>Do countries with higher education levels also report higher life satisfaction?</li>
+                    <li>Are there significant regional differences in educational outcomes?</li>
+                </ul>
+            </div>
+
+            <section id="executive-summary">
+                <h2>Executive Summary</h2>
+                
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-number">128</span>
+            <div class="stat-label">Countries Analyzed</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">7.97</span>
+            <div class="stat-label">Global Average (Years)</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">12.8</span>
+            <div class="stat-label">Highest Achievement</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">2.2</span>
+            <div class="stat-label">Lowest Achievement</div>
+        </div>
+    
+        <div class="stat-card">
+            <span class="stat-number">3</span>
+            <div class="stat-label">Strong Correlations Found</div>
+        </div>
+        
+        <div class="stat-card">
+            <span class="stat-number">Significant</span>
+            <div class="stat-label">Regional Differences</div>
+        </div>
+        </div>
+    <div class="success">
+        <h3>Key Findings</h3>
+        <ul>
+            <li><strong>Global Education:</strong> Average of 7.97 learning-adjusted years across 128 countries</li>
+            <li><strong>Range:</strong> Substantial variation from 2.2 to 12.8 years</li>
+            <li><strong>Distribution:</strong> Education is not normally distributed across countries</li>
+    <li><strong>Strong Correlation:</strong> Education and Gdp Per Capita (r = 0.767)</li><li><strong>Strong Correlation:</strong> Education and Life Satisfaction (r = 0.742)</li><li><strong>Strong Correlation:</strong> Education and Life Expectancy (r = 0.859)</li>
+        </ul>
+    </div>
+    
+            </section>
+
+            <section id="overview">
+                <h2>Education Overview</h2>
+                <p>This analysis examines learning-adjusted years of schooling across 128 countries,
+                providing insights into global educational attainment patterns and their relationships with development indicators.</p>
+
+                <div class="chart-container">
+                    <div class="chart-title">Education Overview: Distributions and Rankings</div>
+                    <img src="education_overview.png" alt="Education Overview">
+                </div>
+
+                
+    <h3>Descriptive Statistics</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Statistic</th>
+                <th>Value</th>
+                <th>Interpretation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mean</td>
+                <td>7.97 years</td>
+                <td>Global average educational attainment</td>
+            </tr>
+            <tr>
+                <td>Median</td>
+                <td>8.27 years</td>
+                <td>Middle value when countries are ranked</td>
+            </tr>
+            <tr>
+                <td>Standard Deviation</td>
+                <td>2.55 years</td>
+                <td>Measure of variability across countries</td>
+            </tr>
+            <tr>
+                <td>Range</td>
+                <td>2.2 - 12.8 years</td>
+                <td>Span from lowest to highest achieving country</td>
+            </tr>
+            <tr>
+                <td>Skewness</td>
+                <td>-0.160</td>
+                <td>Approximately symmetric distribution</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Education Level Categories</h3>
+    <div class="ranking-table">
+        <p>Countries are categorized into three education levels based on learning-adjusted years:</p>
+        <ul>
+            <li><strong>Low Education</strong> (≤6.5 years): 42 countries</li>
+            <li><strong>Medium Education</strong> (6.5 - 9.2 years): 44 countries</li>
+            <li><strong>High Education</strong> (>9.2 years): 42 countries</li>
+        </ul>
+    </div>
+    
+            </section>
+
+            <section id="regional">
+                <h2>Regional Analysis</h2>
+                <p>Regional analysis reveals significant differences in educational attainment across continents,
+                with ANOVA testing showing statistical significance in these variations.</p>
+
+                
+    <div class="success">
+        <h3>ANOVA Results</h3>
+        <p><strong>Statistical Test:</strong> Significant
+        differences between continents (F = 46.089, p = 0.0000)</p>
+        <p><strong>Effect Size:</strong> η² = 0.654
+        (Large effect)</p>
+    </div>
+    
+        <h3>Regional Educational Attainment Ranking</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Continent</th>
+                    <th>Countries</th>
+                    <th>Mean Years</th>
+                    <th>Std Dev</th>
+                    <th>Range</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <tr>
+                    <td>1</td>
+                    <td><strong>Oceania</strong></td>
+                    <td>2</td>
+                    <td>11.30</td>
+                    <td>0.12</td>
+                    <td>11.2 - 11.4</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td><strong>Europe</strong></td>
+                    <td>36</td>
+                    <td>10.42</td>
+                    <td>1.19</td>
+                    <td>7.3 - 11.7</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td><strong>South America</strong></td>
+                    <td>7</td>
+                    <td>8.60</td>
+                    <td>0.45</td>
+                    <td>7.9 - 9.4</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td><strong>Asia</strong></td>
+                    <td>34</td>
+                    <td>8.24</td>
+                    <td>1.91</td>
+                    <td>4.2 - 12.8</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td><strong>North America</strong></td>
+                    <td>11</td>
+                    <td>7.83</td>
+                    <td>1.94</td>
+                    <td>6.1 - 11.7</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td><strong>Africa</strong></td>
+                    <td>38</td>
+                    <td>5.17</td>
+                    <td>1.45</td>
+                    <td>2.2 - 9.4</td>
+                </tr>
+            
+            </tbody>
+        </table>
+        
+        <div class="highlight">
+            <h4>Regional Insights</h4>
+            <ul>
+                <li><strong>Highest:</strong> Oceania leads with 11.30 years average</li>
+                <li><strong>Lowest:</strong> Africa has 5.17 years average</li>
+                <li><strong>Gap:</strong> 6.1 years difference between highest and lowest regions</li>
+            </ul>
+        </div>
+        
+            </section>
+
+            <section id="correlations">
+                <h2>Education Correlations with Development Indicators</h2>
+                <p>Education shows strong relationships with multiple development indicators,
+                suggesting its central role in human thriving and national development.</p>
+
+                <div class="chart-container">
+                    <div class="chart-title">Education Correlations Analysis</div>
+                    <img src="education_correlations.png" alt="Education Correlations">
+                </div>
+
+                
+    <h3>Correlation Results</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Relationship</th>
+                <th>Correlation (r)</th>
+                <th>R²</th>
+                <th>Strength</th>
+                <th>Significance</th>
+                <th>Interpretation</th>
+            </tr>
+        </thead>
+        <tbody>
+    
+                <tr class="correlation-strong">
+                    <td>Education ↔ Gdp Per Capita</td>
+                    <td>0.767</td>
+                    <td>0.588</td>
+                    <td>Strong</td>
+                    <td>Significant</td>
+                    <td>Strong positive relationship</td>
+                </tr>
+            
+                <tr class="correlation-strong">
+                    <td>Education ↔ Life Satisfaction</td>
+                    <td>0.742</td>
+                    <td>0.551</td>
+                    <td>Strong</td>
+                    <td>Significant</td>
+                    <td>Strong positive relationship</td>
+                </tr>
+            
+                <tr class="correlation-strong">
+                    <td>Education ↔ Life Expectancy</td>
+                    <td>0.859</td>
+                    <td>0.738</td>
+                    <td>Strong</td>
+                    <td>Significant</td>
+                    <td>Strong positive relationship</td>
+                </tr>
+            
+                <tr class="correlation-weak">
+                    <td>Education ↔ Unemployment Rate</td>
+                    <td>-0.079</td>
+                    <td>0.006</td>
+                    <td>Weak</td>
+                    <td>Not Significant</td>
+                    <td>Weak negative relationship</td>
+                </tr>
+            
+        </tbody>
+    </table>
+    
+    <div class="success">
+        <h4>Key Correlation Insights</h4>
+        <ul>
+    
+            <li><strong>Gdp Per Capita:</strong> Strong correlation (r = 0.767) -
+            Education explains 58.8% of the variance in gdp per capita</li>
+            
+            <li><strong>Life Satisfaction:</strong> Strong correlation (r = 0.742) -
+            Education explains 55.1% of the variance in life satisfaction</li>
+            
+            <li><strong>Life Expectancy:</strong> Strong correlation (r = 0.859) -
+            Education explains 73.8% of the variance in life expectancy</li>
+            
+        </ul>
+    </div>
+    
+            </section>
+
+            <section id="outliers">
+                <h2>Education Outliers and Performance Analysis</h2>
+                <p>Outlier analysis identifies countries with exceptional educational performance,
+                both high and low, providing insights into educational success factors and challenges.</p>
+
+                <div class="chart-container">
+                    <div class="chart-title">Education Outlier Analysis</div>
+                    <img src="education_outliers.png" alt="Education Outliers">
+                </div>
+
+                <h3>Education Performance Outliers</h3>
+    <h4>Statistical Thresholds</h4>
+    <div class="ranking-table">
+        <ul>
+            <li><strong>Global Mean:</strong> 7.97 years</li>
+            <li><strong>Standard Deviation:</strong> 2.55 years</li>
+            <li><strong>IQR Bounds:</strong> -0.71 - 17.15 years</li>
+        </ul>
+        <p><em>Outliers are identified using Z-score methodology (|z| > 2.5) and IQR analysis.</em></p>
+    </div>
+    
+            </section>
+
+            <div class="footer">
+                <p>Generated by Global Thriving Analysis System - Education Module</p>
+                <p>Data Source: World Data 2.0-Data.csv | Learning-Adjusted Years of School (2020)</p>
+                <p>Analysis completed on September 17, 2025 at 08:02 PM</p>
+                <p>Statistical methods: ANOVA, correlation analysis, outlier detection, regression analysis</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    
