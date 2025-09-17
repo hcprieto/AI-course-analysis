@@ -1,0 +1,544 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Infrastructure Analysis - Global Thriving Study</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+            h1 {
+                color: #2c3e50;
+                border-bottom: 3px solid #8e44ad;
+                padding-bottom: 10px;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            h2 {
+                color: #34495e;
+                border-left: 4px solid #8e44ad;
+                padding-left: 15px;
+                margin-top: 40px;
+            }
+            h3 {
+                color: #2c3e50;
+                margin-top: 25px;
+            }
+            .navigation {
+                background-color: #ecf0f1;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .navigation a {
+                display: inline-block;
+                margin: 5px 10px;
+                padding: 10px 20px;
+                background-color: #8e44ad;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+            .navigation a:hover {
+                background-color: #7d3c98;
+            }
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin: 20px 0;
+            }
+            .stat-card {
+                background-color: #f4f0f8;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                border-left: 4px solid #8e44ad;
+            }
+            .stat-number {
+                font-size: 2em;
+                font-weight: bold;
+                color: #2c3e50;
+                display: block;
+            }
+            .stat-label {
+                color: #7f8c8d;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            .chart-container {
+                margin: 30px 0;
+                text-align: center;
+            }
+            .chart-container img {
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .insights {
+                background-color: #e8f6f3;
+                padding: 20px;
+                border-radius: 8px;
+                border-left: 4px solid #16a085;
+                margin: 20px 0;
+            }
+            .insights h3 {
+                color: #16a085;
+                margin-top: 0;
+            }
+            .correlation-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: white;
+            }
+            .correlation-table th, .correlation-table td {
+                border: 1px solid #ddd;
+                padding: 12px;
+                text-align: left;
+            }
+            .correlation-table th {
+                background-color: #8e44ad;
+                color: white;
+            }
+            .correlation-table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .cluster-info {
+                background-color: #fff3cd;
+                padding: 15px;
+                border-radius: 5px;
+                border-left: 4px solid #ffc107;
+                margin: 15px 0;
+            }
+            .outlier-info {
+                background-color: #f8d7da;
+                padding: 15px;
+                border-radius: 5px;
+                border-left: 4px solid #dc3545;
+                margin: 15px 0;
+            }
+            .methodology {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin: 30px 0;
+            }
+            .country-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+                margin: 15px 0;
+            }
+            .country-item {
+                background-color: #e9ecef;
+                padding: 8px;
+                border-radius: 4px;
+                text-align: center;
+                font-size: 0.9em;
+            }
+            ul.key-findings {
+                background-color: #d1ecf1;
+                padding: 20px;
+                border-radius: 8px;
+                border-left: 4px solid #17a2b8;
+            }
+            ul.key-findings li {
+                margin: 10px 0;
+            }
+            .metric-comparison {
+                display: flex;
+                justify-content: space-between;
+                margin: 10px 0;
+                padding: 10px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+            }
+            .metric-comparison .metric-name {
+                font-weight: bold;
+            }
+            .metric-comparison .metric-value {
+                color: #6c757d;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🏗️ Infrastructure Analysis - Global Thriving Study</h1>
+            
+            <div class="navigation">
+                <a href="#overview">Overview</a>
+                <a href="#regional">Regional Analysis</a>
+                <a href="#correlations">Correlations</a>
+                <a href="#clusters">Development Clusters</a>
+                <a href="#outliers">Notable Patterns</a>
+                <a href="#insights">Key Insights</a>
+                <a href="#methodology">Methodology</a>
+            </div>
+
+            <div id="overview">
+                <h2>📊 Infrastructure Overview</h2>
+                <div class="stats-grid">
+    
+                    <div class="stat-card">
+                        <span class="stat-number">132</span>
+                        <div class="stat-label">Countries Analyzed</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">85.5%</span>
+                        <div class="stat-label">Average Electricity Access</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100.0%</span>
+                        <div class="stat-label">Median Electricity Access</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">81</span>
+                        <div class="stat-label">Universal Access Countries</div>
+                    </div>
+    
+                </div>
+                
+                <div class="chart-container">
+                    <img src="infrastructure_overview.png" alt="Infrastructure Overview Visualization">
+                </div>
+                
+                <div class="insights">
+                    <h3>🔍 Overview Insights</h3>
+                    <ul>
+    
+                        <li><strong>Global Status:</strong> 85.5% average electricity access across 132 countries</li>
+                        <li><strong>Universal Access:</strong> 81 countries achieve near-universal electricity access (≥99%)</li>
+                        <li><strong>Regional Leaders:</strong> Oceania leads with 100.0% average access</li>
+                        <li><strong>Development Gap:</strong> 43.8 percentage point gap between best and worst regions</li>
+        
+                    </ul>
+                </div>
+            </div>
+
+            <div id="regional">
+                <h2>🌍 Regional Analysis</h2>
+    
+                <table class="correlation-table">
+                    <thead>
+                        <tr>
+                            <th>Region</th>
+                            <th>Countries</th>
+                            <th>Avg Access (%)</th>
+                            <th>Median Access (%)</th>
+                            <th>Universal Access</th>
+                            <th>Avg GDP per Capita</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td>Asia</td>
+                            <td>35</td>
+                            <td>96.6%</td>
+                            <td>100.0%</td>
+                            <td>25</td>
+                            <td>$16,592</td>
+                        </tr>
+            
+                        <tr>
+                            <td>Europe</td>
+                            <td>36</td>
+                            <td>100.0%</td>
+                            <td>100.0%</td>
+                            <td>36</td>
+                            <td>$32,078</td>
+                        </tr>
+            
+                        <tr>
+                            <td>Africa</td>
+                            <td>39</td>
+                            <td>56.2%</td>
+                            <td>52.8%</td>
+                            <td>5</td>
+                            <td>$4,878</td>
+                        </tr>
+            
+                        <tr>
+                            <td>South America</td>
+                            <td>9</td>
+                            <td>99.5%</td>
+                            <td>100.0%</td>
+                            <td>7</td>
+                            <td>$14,204</td>
+                        </tr>
+            
+                        <tr>
+                            <td>Oceania</td>
+                            <td>2</td>
+                            <td>100.0%</td>
+                            <td>100.0%</td>
+                            <td>2</td>
+                            <td>$39,412</td>
+                        </tr>
+            
+                        <tr>
+                            <td>North America</td>
+                            <td>11</td>
+                            <td>92.9%</td>
+                            <td>99.4%</td>
+                            <td>6</td>
+                            <td>$17,074</td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+        
+                <div class="insights">
+                    <h3>📈 Statistical Analysis</h3>
+                    <p><strong>ANOVA Test Results:</strong></p>
+                    <ul>
+                        <li>F-statistic: 38.636</li>
+                        <li>P-value: 0.000000</li>
+                        <li>Result: Significant regional differences in electricity access (α = 0.05)</li>
+                    </ul>
+                </div>
+            
+            </div>
+
+            <div id="correlations">
+                <h2>🔗 Infrastructure Correlations</h2>
+    
+                <table class="correlation-table">
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Correlation with Electricity Access</th>
+                            <th>Strength</th>
+                            <th>P-value</th>
+                            <th>Significance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td>↗️ Life Expectancy</td>
+                            <td>0.800</td>
+                            <td>Strong</td>
+                            <td>0.000</td>
+                            <td>✅ Significant</td>
+                        </tr>
+            
+                        <tr>
+                            <td>↗️ Education Years</td>
+                            <td>0.739</td>
+                            <td>Strong</td>
+                            <td>0.000</td>
+                            <td>✅ Significant</td>
+                        </tr>
+            
+                        <tr>
+                            <td>↗️ Life Satisfaction</td>
+                            <td>0.553</td>
+                            <td>Moderate</td>
+                            <td>0.000</td>
+                            <td>✅ Significant</td>
+                        </tr>
+            
+                        <tr>
+                            <td>↗️ Gdp Per Capita</td>
+                            <td>0.513</td>
+                            <td>Moderate</td>
+                            <td>0.000</td>
+                            <td>✅ Significant</td>
+                        </tr>
+            
+                        <tr>
+                            <td>↗️ Unemployment Rate</td>
+                            <td>0.082</td>
+                            <td>Weak</td>
+                            <td>0.450</td>
+                            <td>❌ Not Significant</td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+                
+                <div class="insights">
+                    <h3>🔍 Correlation Insights</h3>
+                    <ul>
+        <li><strong>Strong Relationships:</strong> Found 2 strong correlations with electricity access</li><li><strong>Strongest Correlation:</strong> Life Expectancy is positively correlated (r = 0.800)</li><li><strong>Life Expectancy:</strong> As electricity access improves, life expectancy typically increases</li><li><strong>Education Years:</strong> As electricity access improves, education years typically increases</li>
+                    </ul>
+                </div>
+    
+            </div>
+
+            <div id="clusters">
+                <h2>🎯 Infrastructure Development Clusters</h2>
+    
+                <div class="cluster-info">
+                    <h3>Clustering Overview</h3>
+                    <p><strong>Number of Clusters:</strong> 2</p>
+                    <p><strong>Clustering Quality (Silhouette Score):</strong> 0.485</p>
+                </div>
+        
+                <div class="cluster-info">
+                    <h3>Cluster 0 - 44 Countries</h3>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Electricity Access:</span>
+                        <span class="metric-value">58.2%</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average GDP per Capita:</span>
+                        <span class="metric-value">$3,870</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Life Satisfaction:</span>
+                        <span class="metric-value">4.42</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Life Expectancy:</span>
+                        <span class="metric-value">63.8 years</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Education Years:</span>
+                        <span class="metric-value">5.2 years</span>
+                    </div>
+                    
+                    <h4>Countries in this cluster:</h4>
+                    <div class="country-list">
+            <div class="country-item">Afghanistan</div><div class="country-item">Bangladesh</div><div class="country-item">Benin</div><div class="country-item">Botswana</div><div class="country-item">Burkina Faso</div><div class="country-item">Burundi</div><div class="country-item">Cambodia</div><div class="country-item">Cameroon</div><div class="country-item">Chad</div><div class="country-item">Comoros</div><div class="country-item">Congo - Brazzaville</div><div class="country-item">Cote d'Ivoire</div><div class="country-item">Egypt</div><div class="country-item">Eswatini</div><div class="country-item">Ethiopia</div><div class="country-item">Gabon</div><div class="country-item">Gambia</div><div class="country-item">Guinea</div><div class="country-item">Haiti</div><div class="country-item">India</div><div class="country-item">Kenya</div><div class="country-item">Laos</div><div class="country-item">Liberia</div><div class="country-item">Madagascar</div><div class="country-item">Malawi</div><div class="country-item">Mali</div><div class="country-item">Mauritania</div><div class="country-item">Mozambique</div><div class="country-item">Myanmar</div><div class="country-item">Namibia</div><div class="country-item">Nepal</div><div class="country-item">Niger</div><div class="country-item">Nigeria</div><div class="country-item">Pakistan</div><div class="country-item">Rwanda</div><div class="country-item">Senegal</div><div class="country-item">Sierra Leone</div><div class="country-item">South Africa</div><div class="country-item">Tanzania</div><div class="country-item">Togo</div><div class="country-item">Uganda</div><div class="country-item">Yemen</div><div class="country-item">Zambia</div><div class="country-item">Zimbabwe</div>
+                    </div>
+                </div>
+            
+                <div class="cluster-info">
+                    <h3>Cluster 1 - 84 Countries</h3>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Electricity Access:</span>
+                        <span class="metric-value">99.6%</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average GDP per Capita:</span>
+                        <span class="metric-value">$25,002</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Life Satisfaction:</span>
+                        <span class="metric-value">6.05</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Life Expectancy:</span>
+                        <span class="metric-value">77.7 years</span>
+                    </div>
+                    <div class="metric-comparison">
+                        <span class="metric-name">Average Education Years:</span>
+                        <span class="metric-value">9.4 years</span>
+                    </div>
+                    
+                    <h4>Countries in this cluster:</h4>
+                    <div class="country-list">
+            <div class="country-item">Albania</div><div class="country-item">Algeria</div><div class="country-item">Argentina</div><div class="country-item">Armenia</div><div class="country-item">Australia</div><div class="country-item">Austria</div><div class="country-item">Azerbaijan</div><div class="country-item">Belarus</div><div class="country-item">Belgium</div><div class="country-item">Bosnia and Herzegovina</div><div class="country-item">Brazil</div><div class="country-item">Bulgaria</div><div class="country-item">Canada</div><div class="country-item">Chile</div><div class="country-item">China</div><div class="country-item">Colombia</div><div class="country-item">Costa Rica</div><div class="country-item">Croatia</div><div class="country-item">Cyprus</div><div class="country-item">Czechia</div><div class="country-item">Denmark</div><div class="country-item">Dominican Republic</div><div class="country-item">Ecuador</div><div class="country-item">El Salvador</div><div class="country-item">Estonia</div><div class="country-item">Finland</div><div class="country-item">France</div><div class="country-item">Georgia</div><div class="country-item">Germany</div><div class="country-item">Greece</div><div class="country-item">Guatemala</div><div class="country-item">Honduras</div><div class="country-item">Indonesia</div><div class="country-item">Iran</div><div class="country-item">Ireland</div><div class="country-item">Israel</div><div class="country-item">Italy</div><div class="country-item">Japan</div><div class="country-item">Jordan</div><div class="country-item">Kazakhstan</div><div class="country-item">Kyrgyzstan</div><div class="country-item">Latvia</div><div class="country-item">Lebanon</div><div class="country-item">Lithuania</div><div class="country-item">Luxembourg</div><div class="country-item">Malaysia</div><div class="country-item">Malta</div><div class="country-item">Mauritius</div><div class="country-item">Mexico</div><div class="country-item">Moldova</div><div class="country-item">Mongolia</div><div class="country-item">Montenegro</div><div class="country-item">Morocco</div><div class="country-item">Netherlands</div><div class="country-item">New Zealand</div><div class="country-item">Nicaragua</div><div class="country-item">North Macedonia</div><div class="country-item">Norway</div><div class="country-item">Palestine</div><div class="country-item">Panama</div><div class="country-item">Peru</div><div class="country-item">Philippines</div><div class="country-item">Portugal</div><div class="country-item">Romania</div><div class="country-item">Russia</div><div class="country-item">Saudi Arabia</div><div class="country-item">Singapore</div><div class="country-item">Slovakia</div><div class="country-item">Slovenia</div><div class="country-item">South Korea</div><div class="country-item">Spain</div><div class="country-item">Sri Lanka</div><div class="country-item">Sweden</div><div class="country-item">Switzerland</div><div class="country-item">Thailand</div><div class="country-item">Tunisia</div><div class="country-item">Turkey</div><div class="country-item">Ukraine</div><div class="country-item">United Arab Emirates</div><div class="country-item">United Kingdom</div><div class="country-item">United States</div><div class="country-item">Uruguay</div><div class="country-item">Uzbekistan</div><div class="country-item">Vietnam</div>
+                    </div>
+                </div>
+            
+            </div>
+
+            <div id="outliers">
+                <h2>🎯 Notable Infrastructure Patterns</h2>
+    
+                <div class="outlier-info">
+                    <h3>High Access, Low GDP</h3>
+                    <ul>
+            <li><strong>Afghanistan:</strong> Achieves 97.7% electricity access with GDP of $1,929</li><li><strong>Bangladesh:</strong> Achieves 96.2% electricity access with GDP of $3,250</li><li><strong>Palestine:</strong> Achieves 100.0% electricity access with GDP of $2,762</li>
+                    </ul>
+                </div>
+            
+                <div class="outlier-info">
+                    <h3>Low Access, High GDP</h3>
+                    <ul>
+            <li><strong>Botswana:</strong> Only 72.0% electricity access despite GDP of $15,015</li><li><strong>Namibia:</strong> Only 56.3% electricity access despite GDP of $11,741</li>
+                    </ul>
+                </div>
+            
+                <div class="outlier-info">
+                    <h3>High Infrastructure Efficiency</h3>
+                    <ul>
+            <li><strong>Afghanistan:</strong> High infrastructure efficiency: 50.6</li><li><strong>Comoros:</strong> High infrastructure efficiency: 50.6</li><li><strong>Liberia:</strong> High infrastructure efficiency: 36.0</li><li><strong>Nepal:</strong> High infrastructure efficiency: 34.8</li><li><strong>Palestine:</strong> High infrastructure efficiency: 36.2</li>
+                    </ul>
+                </div>
+            
+                <div class="chart-container">
+                    <img src="infrastructure_outliers.png" alt="Infrastructure Outliers Analysis">
+                </div>
+        
+            </div>
+
+            <div id="insights">
+                <h2>💡 Key Insights</h2>
+                <ul class="key-findings">
+    
+                    <li><strong>Global Infrastructure Status:</strong> Average electricity access stands at 85.5%, with 81 countries achieving near-universal access</li>
+                    <li><strong>Top Performers:</strong> Albania, Argentina, Armenia lead in electricity access</li>
+                    <li><strong>Improvement Opportunities:</strong> Chad, Burundi, Malawi have the lowest electricity access rates</li>
+    
+                    <li><strong>Key Relationship:</strong> Electricity access shows strongest correlation with life expectancy (r = 0.800)</li>
+        
+                    <li><strong>Development Patterns:</strong> Countries group into 2 distinct infrastructure development clusters</li>
+        
+                    <li><strong>Efficiency Examples:</strong> 3 countries achieve high electricity access despite lower GDP levels</li>
+            
+                </ul>
+            </div>
+
+            <div id="methodology">
+                <h2>🔬 Methodology</h2>
+                <div class="methodology">
+                    <h3>Data Sources & Indicators</h3>
+                    <ul>
+                        <li><strong>Primary Infrastructure Indicator:</strong> Percentage of population with access to electricity (2020)</li>
+                        <li><strong>Supporting Indicators:</strong> Number of people with electricity access, GDP per capita, life satisfaction, life expectancy, education years</li>
+                        <li><strong>Geographic Coverage:</strong> Global analysis across major continents</li>
+                    </ul>
+                    
+                    <h3>Analytical Methods</h3>
+                    <ul>
+                        <li><strong>Regional Analysis:</strong> ANOVA testing for significant regional differences</li>
+                        <li><strong>Correlation Analysis:</strong> Pearson correlation coefficients with significance testing</li>
+                        <li><strong>Clustering Analysis:</strong> K-means clustering with silhouette score optimization</li>
+                        <li><strong>Outlier Detection:</strong> Statistical and logical outlier identification</li>
+                        <li><strong>Infrastructure Metrics:</strong> Custom efficiency and gap calculations</li>
+                    </ul>
+                    
+                    <h3>Infrastructure Categories</h3>
+                    <ul>
+                        <li><strong>Universal Access:</strong> ≥99% electricity access</li>
+                        <li><strong>High Access:</strong> 90-98% electricity access</li>
+                        <li><strong>Medium Access:</strong> 70-89% electricity access</li>
+                        <li><strong>Low Access:</strong> 50-69% electricity access</li>
+                        <li><strong>Very Low Access:</strong> <50% electricity access</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
+                <p><strong>Infrastructure Analysis Report</strong></p>
+                <p>Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+                <p>Global Thriving Study - Infrastructure Dimension</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    
