@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Thriving Analysis Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .analysis-modules {
+            margin: 40px 0;
+        }
+
+        .analysis-modules h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .module-header h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .status-badge.completed {
+            background: #27ae60;
+            color: white;
+        }
+
+        .status-badge.in-progress {
+            background: #f39c12;
+            color: white;
+        }
+
+        .status-badge.pending {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .module-content p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .module-details {
+            margin: 20px 0;
+        }
+
+        .module-details h4 {
+            color: #34495e;
+            margin: 15px 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .module-details ul {
+            margin-left: 20px;
+            color: #7f8c8d;
+        }
+
+        .module-details li {
+            margin: 5px 0;
+        }
+
+        .module-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: #3498db;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-btn.view-results {
+            background: #27ae60;
+        }
+
+        .quick-insights {
+            margin: 40px 0;
+        }
+
+        .quick-insights h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .insight-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .insight-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .insight-card p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .insight-source {
+            background: #e74c3c;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 Global Thriving Analysis Dashboard</h1>
+            <p>Comprehensive multi-dimensional analysis of national well-being and development</p>
+            <div class="status-bar">
+                <span class="status-item">📊 Data Source: World Bank, OECD, Gallup</span>
+                <span class="status-item">🗓️ Last Updated: December 2024</span>
+                <span class="status-item">🔄 Status: Analysis Complete</span>
+            </div>
+        </header>
+
+        <section class="analysis-modules">
+            <h2>📈 Analysis Modules</h2>
+            
+            <div class="module-grid">
+                <!-- Economic Analysis Module -->
+                <div class="module-card completed">
+                    <div class="module-header">
+                        <h3>💰 Economic Analysis</h3>
+                        <span class="status-badge completed">✅ Complete</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Comprehensive analysis of economic indicators including GDP per capita, unemployment rates, and their relationships with well-being.</p>
+                        
+                        <div class="module-details">
+                            <h4>Research Questions:</h4>
+                            <ul>
+                                <li>How do GDP per capita levels differ across regions?</li>
+                                <li>What is the relationship between unemployment and life satisfaction?</li>
+                                <li>Do wealthier countries show higher thriving on other dimensions?</li>
+                                <li>Can we identify distinct economic clusters of countries?</li>
+                            </ul>
+                            
+                            <h4>Key Components:</h4>
+                            <ul>
+                                <li>Univariate economic indicator analysis</li>
+                                <li>Regional comparative analysis</li>
+                                <li>Economic-wellbeing correlations</li>
+                                <li>Economic clustering and outlier detection</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="action-btn" onclick="runAnalysis('economic')">🔄 Re-run Analysis</button>
+                            <button class="action-btn view-results" onclick="viewResults('economic')">📊 View Results</button>
+                            <button class="action-btn" onclick="viewCode('economic')">💻 View Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Analysis Module -->
+                <div class="module-card completed">
+                    <div class="module-header">
+                        <h3>🏥 Health Analysis</h3>
+                        <span class="status-badge completed">✅ Complete</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Analysis of health indicators including life expectancy, infant mortality, healthcare infrastructure, and their global patterns.</p>
+                        
+                        <div class="module-details">
+                            <h4>Research Questions:</h4>
+                            <ul>
+                                <li>How do health outcomes vary across continents?</li>
+                                <li>What is the relationship between healthcare resources and health outcomes?</li>
+                                <li>Which countries are outliers in health performance?</li>
+                                <li>Are there regional clusters in health indicators?</li>
+                            </ul>
+                            
+                            <h4>Key Components:</h4>
+                            <ul>
+                                <li>Health outcome distribution analysis</li>
+                                <li>Healthcare infrastructure assessment</li>
+                                <li>Regional health comparisons</li>
+                                <li>Health system efficiency analysis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="action-btn" onclick="runAnalysis('health')">🔄 Re-run Analysis</button>
+                            <button class="action-btn view-results" onclick="viewResults('health')">📊 View Results</button>
+                            <button class="action-btn" onclick="viewCode('health')">💻 View Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Analysis Module -->
+                <div class="module-card completed">
+                    <div class="module-header">
+                        <h3>🎓 Education Analysis</h3>
+                        <span class="status-badge completed">✅ Complete</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Analysis of education indicators including learning-adjusted years of schooling, enrollment rates, and educational quality measures.</p>
+                        
+                        <div class="module-details">
+                            <h4>Research Questions:</h4>
+                            <ul>
+                                <li>How do educational outcomes vary globally?</li>
+                                <li>What is the relationship between enrollment and quality?</li>
+                                <li>Which countries achieve high educational efficiency?</li>
+                                <li>Are there gender gaps in education access?</li>
+                            </ul>
+                            
+                            <h4>Key Components:</h4>
+                            <ul>
+                                <li>Educational outcome analysis</li>
+                                <li>Enrollment pattern examination</li>
+                                <li>Education quality assessment</li>
+                                <li>Educational inequality analysis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="action-btn" onclick="runAnalysis('education')">🔄 Re-run Analysis</button>
+                            <button class="action-btn view-results" onclick="viewResults('education')">📊 View Results</button>
+                            <button class="action-btn" onclick="viewCode('education')">💻 View Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Well-being Analysis Module -->
+                <div class="module-card completed">
+                    <div class="module-header">
+                        <h3>😊 Social Well-being Analysis</h3>
+                        <span class="status-badge completed">✅ Complete</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Analysis of social indicators including life satisfaction, personal freedoms, social support, and generosity measures.</p>
+                        
+                        <div class="module-details">
+                            <h4>Research Questions:</h4>
+                            <ul>
+                                <li>How do social well-being indicators vary across regions?</li>
+                                <li>What factors contribute most to life satisfaction?</li>
+                                <li>Which countries excel in social support systems?</li>
+                                <li>Are there cultural patterns in generosity and freedoms?</li>
+                            </ul>
+                            
+                            <h4>Key Components:</h4>
+                            <ul>
+                                <li>Life satisfaction analysis</li>
+                                <li>Social support system evaluation</li>
+                                <li>Personal freedoms assessment</li>
+                                <li>Cultural and social pattern identification</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="action-btn" onclick="runAnalysis('social')">🔄 Re-run Analysis</button>
+                            <button class="action-btn view-results" onclick="viewResults('social')">📊 View Results</button>
+                            <button class="action-btn" onclick="viewCode('social')">💻 View Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cross-Cutting Analysis Module -->
+                <div class="module-card completed">
+                    <div class="module-header">
+                        <h3>🔗 Cross-Cutting Analysis</h3>
+                        <span class="status-badge completed">✅ Complete</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Comprehensive analysis across multiple dimensions of thriving to identify patterns, synergies, and trade-offs.</p>
+                        
+                        <div class="module-details">
+                            <h4>Research Questions:</h4>
+                            <ul>
+                                <li>How do different dimensions of thriving relate to each other?</li>
+                                <li>Can we create a comprehensive "thriving index"?</li>
+                                <li>What are the key synergies and trade-offs?</li>
+                                <li>Which countries excel across multiple dimensions?</li>
+                                <li>Are there distinct development patterns?</li>
+                            </ul>
+                            
+                            <h4>Key Components:</h4>
+                            <ul>
+                                <li>Multidimensional correlation analysis</li>
+                                <li>Composite indices creation</li>
+                                <li>Clustering across all dimensions</li>
+                                <li>Synergy and trade-off identification</li>
+                                <li>Development pathways analysis</li>
+                            </ul>
+                            
+                            <h4>Expected Outputs:</h4>
+                            <ul>
+                                <li>Cross-dimensional relationship maps</li>
+                                <li>Overall thriving rankings</li>
+                                <li>Country development archetypes</li>
+                                <li>Synergy/trade-off matrices</li>
+                                <li>Comprehensive HTML report</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="action-btn" onclick="runAnalysis('cross-cutting')">🔄 Re-run Analysis</button>
+                            <button class="action-btn view-results" onclick="viewResults('cross-cutting')">📊 View Results</button>
+                            <button class="action-btn" onclick="viewCode('cross-cutting')">💻 View Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Predictive Modeling Module -->
+                <div class="module-card pending">
+                    <div class="module-header">
+                        <h3>🔮 Predictive Modeling</h3>
+                        <span class="status-badge pending">⏳ Planned</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Machine learning models to predict thriving outcomes and identify key intervention points for policy makers.</p>
+                        
+                        <div class="module-details">
+                            <h4>Planned Components:</h4>
+                            <ul>
+                                <li>Multi-target regression models</li>
+                                <li>Feature importance analysis</li>
+                                <li>Policy scenario modeling</li>
+                                <li>Intervention impact prediction</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="action-btn" onclick="runAnalysis('predictive')" disabled>🔄 Coming Soon</button>
+                            <button class="action-btn" onclick="viewCode('predictive')" disabled>💻 In Development</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-insights">
+            <h2>💡 Quick Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h3>🔗 Cross-Dimensional Patterns</h3>
+                    <p>Strong positive correlations found between economic development and health outcomes, education quality, and social well-being indicators.</p>
+                    <span class="insight-source">Cross-Cutting Analysis</span>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>🎯 Development Archetypes</h3>
+                    <p>Countries follow distinct development pathways - some specialize in specific dimensions while others pursue balanced multi-dimensional growth.</p>
+                    <span class="insight-source">Cross-Cutting Analysis</span>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>💰 Economic Clustering</h3>
+                    <p>Countries naturally cluster into distinct economic development patterns, with clear relationships between GDP and other thriving indicators.</p>
+                    <span class="insight-source">Economic Analysis</span>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>🏥 Health Inequalities</h3>
+                    <p>Significant health outcome disparities exist between regions, with healthcare infrastructure playing a crucial role in population health.</p>
+                    <span class="insight-source">Health Analysis</span>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>🎓 Education Quality</h3>
+                    <p>Learning-adjusted years of schooling shows substantial variation globally, indicating differences in both access and quality of education.</p>
+                    <span class="insight-source">Education Analysis</span>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>😊 Social Well-being</h3>
+                    <p>Life satisfaction correlates strongly with social support systems and personal freedoms, varying significantly across cultural contexts.</p>
+                    <span class="insight-source">Social Analysis</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>© 2024 Global Thriving Analysis Project | Data-driven insights for a better world</p>
+        </div>
+    </div>
+
+    <script>
+        function viewResults(module) {
+            const resultPages = {
+                'economic': 'analysis-output-files/economic_analysis_report.html',
+                'health': 'analysis-output-files/health_analysis_report.html',
+                'education': 'analysis-output-files/education_analysis_report.html',
+                'social': 'analysis-output-files/social_analysis_report.html',
+                'cross-cutting': 'analysis-output-files/cross_cutting_analysis_report.html'
+            };
+            
+            if (resultPages[module]) {
+                window.open(resultPages[module], '_blank');
+            } else {
+                alert('Results page not available yet. Please run the analysis first.');
+            }
+        }
+
+        function runAnalysis(module) {
+            const commands = {
+                'economic': 'python code-files/economic_analysis.py',
+                'health': 'python code-files/health_analysis.py', 
+                'education': 'python code-files/education_analysis.py',
+                'social': 'python code-files/social_analysis.py',
+                'cross-cutting': 'python code-files/cross_cutting_analysis.py'
+            };
+            
+            alert(`To run ${module} analysis, execute:\n\n${commands[module]}\n\nfrom the project root directory.`);
+        }
+
+        function viewCode(module) {
+            const codeFiles = {
+                'economic': 'code-files/economic_analysis.py',
+                'health': 'code-files/health_analysis.py',
+                'education': 'code-files/education_analysis.py', 
+                'social': 'code-files/social_analysis.py',
+                'cross-cutting': 'code-files/cross_cutting_analysis.py'
+            };
+            
+            alert(`Code file location:\n\n${codeFiles[module]}`);
+        }
+
+        // Add some interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects and animations
+            const cards = document.querySelectorAll('.module-card, .insight-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

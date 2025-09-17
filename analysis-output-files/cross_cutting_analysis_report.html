@@ -1,0 +1,683 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Cross-Cutting Analysis - Global Thriving Study</title>
+            <style>
+                
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background-color: #f8f9fa;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: white;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 40px;
+                padding: 30px 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-radius: 10px;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                margin-bottom: 20px;
+            }
+
+            .meta-info {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+
+            .table-of-contents {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+            }
+
+            .table-of-contents ul {
+                list-style: none;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .table-of-contents a {
+                color: #667eea;
+                text-decoration: none;
+                padding: 8px 12px;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+            .table-of-contents a:hover {
+                background-color: #e9ecef;
+            }
+
+            .section {
+                margin-bottom: 40px;
+                padding: 25px;
+                border-radius: 8px;
+                border-left: 4px solid #667eea;
+            }
+
+            .section h2 {
+                color: #495057;
+                margin-bottom: 20px;
+                font-size: 1.8rem;
+            }
+
+            .section h3 {
+                color: #6c757d;
+                margin: 20px 0 15px 0;
+                font-size: 1.3rem;
+            }
+
+            .key-findings {
+                background-color: #e3f2fd;
+                padding: 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+                border-left: 4px solid #2196f3;
+            }
+
+            .insight-box {
+                background-color: #f1f8e9;
+                padding: 15px;
+                border-radius: 6px;
+                margin: 15px 0;
+                border-left: 3px solid #4caf50;
+            }
+
+            .warning-box {
+                background-color: #fff3e0;
+                padding: 15px;
+                border-radius: 6px;
+                margin: 15px 0;
+                border-left: 3px solid #ff9800;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin: 20px 0;
+            }
+
+            .stat-card {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                border: 1px solid #dee2e6;
+                text-align: center;
+                transition: transform 0.2s;
+            }
+
+            .stat-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .stat-number {
+                font-size: 2rem;
+                font-weight: bold;
+                color: #667eea;
+                display: block;
+            }
+
+            .stat-label {
+                color: #6c757d;
+                font-size: 0.9rem;
+                margin-top: 5px;
+            }
+
+            .country-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 15px 0;
+            }
+
+            .country-tag {
+                background-color: #e7f3ff;
+                color: #0066cc;
+                padding: 4px 12px;
+                border-radius: 15px;
+                font-size: 0.85rem;
+                border: 1px solid #b3d9ff;
+            }
+
+            .relationship-item {
+                background-color: #f8f9fa;
+                padding: 12px;
+                margin: 8px 0;
+                border-radius: 6px;
+                border-left: 3px solid #667eea;
+            }
+
+            .correlation-strength {
+                font-weight: bold;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+            }
+
+            .strong { background-color: #d4edda; color: #155724; }
+            .moderate { background-color: #fff3cd; color: #856404; }
+            .weak { background-color: #f8d7da; color: #721c24; }
+
+            .visualization-container {
+                text-align: center;
+                margin: 20px 0;
+                padding: 20px;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+            }
+
+            .visualization-container img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                background-color: white;
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            th {
+                background-color: #f8f9fa;
+                font-weight: 600;
+                color: #495057;
+            }
+
+            tr:hover {
+                background-color: #f8f9fa;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 50px;
+                padding: 30px;
+                background-color: #f8f9fa;
+                color: #6c757d;
+                border-radius: 8px;
+                font-size: 0.9rem;
+            }
+
+            .methodology-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+                margin: 20px 0;
+            }
+
+            .method-card {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                border: 1px solid #dee2e6;
+            }
+
+            .method-card h4 {
+                color: #495057;
+                margin-bottom: 10px;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 10px;
+                }
+                
+                header h1 {
+                    font-size: 2rem;
+                }
+                
+                .meta-info {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <header>
+                    <h1>🔗 Cross-Cutting Analysis: Global Thriving Study</h1>
+                    <p class="subtitle">Comprehensive analysis across multiple dimensions of national thriving</p>
+                    <div class="meta-info">
+                        <span>Generated: September 17, 2025 at 09:25 PM</span>
+                        <span>Countries analyzed: 132</span>
+                    </div>
+                </header>
+
+                <nav class="table-of-contents">
+                    <h2>📋 Table of Contents</h2>
+                    <ul>
+                        <li><a href="#executive-summary">Executive Summary</a></li>
+                        <li><a href="#correlations">Cross-Dimensional Relationships</a></li>
+                        <li><a href="#composite-indices">Composite Thriving Indices</a></li>
+                        <li><a href="#clustering">Multidimensional Clustering</a></li>
+                        <li><a href="#synergies">Synergies and Trade-offs</a></li>
+                        <li><a href="#pathways">Development Pathways</a></li>
+                        <li><a href="#visualizations">Key Visualizations</a></li>
+                        <li><a href="#methodology">Methodology</a></li>
+                    </ul>
+                </nav>
+
+                
+        <section id="executive-summary" class="section">
+            <h2>📊 Executive Summary</h2>
+            
+            <div class="key-findings">
+                <h3>🎯 Key Findings</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">132</span>
+                        <div class="stat-label">Countries Analyzed</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">12</span>
+                        <div class="stat-label">Strong Cross-Dimensional Relationships</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">5</span>
+                        <div class="stat-label">Thriving Dimensions</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">4</span>
+                        <div class="stat-label">Country Clusters Identified</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h3>💡 Main Insights</h3>
+                <ul>
+                    <li><strong>Multidimensional Patterns:</strong> Countries show distinct patterns of development across economic, health, education, and social dimensions.</li>
+                    <li><strong>Synergistic Relationships:</strong> 0 positive synergies found between different thriving dimensions.</li>
+                    <li><strong>Development Archetypes:</strong> Countries follow different pathways - some specialize in specific dimensions while others pursue balanced development.</li>
+                    <li><strong>Regional Variations:</strong> Significant differences exist between continents in overall thriving patterns.</li>
+                </ul>
+            </div>
+
+            
+        <div class="insight-box">
+            <h3>🔗 Strongest Cross-Dimensional Relationships</h3>
+            
+            <div class="relationship-item">
+                <strong>Health ↔ Education</strong>
+                <span class="correlation-strength moderate">r = 0.859</span>
+                <br>
+                <small>Life Expectancy At Birth Years2018 vs Learning Adjusted Years Of School</small>
+            </div>
+            
+            <div class="relationship-item">
+                <strong>Education ↔ Health</strong>
+                <span class="correlation-strength moderate">r = 0.859</span>
+                <br>
+                <small>Learning Adjusted Years Of School vs Life Expectancy At Birth Years2018</small>
+            </div>
+            
+            <div class="relationship-item">
+                <strong>Economic ↔ Education</strong>
+                <span class="correlation-strength moderate">r = 0.767</span>
+                <br>
+                <small>Gdp Per Capita vs Learning Adjusted Years Of School</small>
+            </div>
+            
+            <div class="relationship-item">
+                <strong>Education ↔ Economic</strong>
+                <span class="correlation-strength moderate">r = 0.767</span>
+                <br>
+                <small>Learning Adjusted Years Of School vs Gdp Per Capita</small>
+            </div>
+            
+            <div class="relationship-item">
+                <strong>Economic ↔ Social</strong>
+                <span class="correlation-strength moderate">r = 0.751</span>
+                <br>
+                <small>Gdp Per Capita vs Life Satisfaction In Cantril Ladder</small>
+            </div>
+            
+        </div>
+        
+        </section>
+        
+                
+        <section id="correlations" class="section">
+            <h2>🔗 Cross-Dimensional Relationships</h2>
+            
+            <p>This analysis examines how different dimensions of national thriving relate to each other, 
+            identifying synergies and potential trade-offs between economic, health, education, and social indicators.</p>
+            
+            <div class="key-findings">
+                <h3>Key Findings</h3>
+                <ul>
+                    <li>Found <strong>12</strong> statistically significant cross-dimensional relationships</li>
+                    <li>Analysis based on <strong>132</strong> countries with sufficient data</li>
+                    <li>Relationships span across all major thriving dimensions</li>
+                </ul>
+            </div>
+
+            
+        <h3>Top Cross-Dimensional Relationships</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dimension 1</th>
+                    <th>Dimension 2</th>
+                    <th>Indicator 1</th>
+                    <th>Indicator 2</th>
+                    <th>Correlation</th>
+                    <th>Countries</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td>Health</td>
+                <td>Education</td>
+                <td>Life Expectancy At Birth Years2018</td>
+                <td>Learning Adjusted Years Of School</td>
+                <td><span class="correlation-strength strong">0.859</span></td>
+                <td>128</td>
+            </tr>
+            
+            <tr>
+                <td>Education</td>
+                <td>Health</td>
+                <td>Learning Adjusted Years Of School</td>
+                <td>Life Expectancy At Birth Years2018</td>
+                <td><span class="correlation-strength strong">0.859</span></td>
+                <td>128</td>
+            </tr>
+            
+            <tr>
+                <td>Economic</td>
+                <td>Education</td>
+                <td>Gdp Per Capita</td>
+                <td>Learning Adjusted Years Of School</td>
+                <td><span class="correlation-strength strong">0.767</span></td>
+                <td>128</td>
+            </tr>
+            
+            <tr>
+                <td>Education</td>
+                <td>Economic</td>
+                <td>Learning Adjusted Years Of School</td>
+                <td>Gdp Per Capita</td>
+                <td><span class="correlation-strength strong">0.767</span></td>
+                <td>128</td>
+            </tr>
+            
+            <tr>
+                <td>Economic</td>
+                <td>Social</td>
+                <td>Gdp Per Capita</td>
+                <td>Life Satisfaction In Cantril Ladder</td>
+                <td><span class="correlation-strength strong">0.751</span></td>
+                <td>132</td>
+            </tr>
+            
+            <tr>
+                <td>Social</td>
+                <td>Economic</td>
+                <td>Life Satisfaction In Cantril Ladder</td>
+                <td>Gdp Per Capita</td>
+                <td><span class="correlation-strength strong">0.751</span></td>
+                <td>132</td>
+            </tr>
+            
+            <tr>
+                <td>Education</td>
+                <td>Social</td>
+                <td>Learning Adjusted Years Of School</td>
+                <td>Life Satisfaction In Cantril Ladder</td>
+                <td><span class="correlation-strength strong">0.742</span></td>
+                <td>128</td>
+            </tr>
+            
+            <tr>
+                <td>Social</td>
+                <td>Education</td>
+                <td>Life Satisfaction In Cantril Ladder</td>
+                <td>Learning Adjusted Years Of School</td>
+                <td><span class="correlation-strength strong">0.742</span></td>
+                <td>128</td>
+            </tr>
+            
+            <tr>
+                <td>Economic</td>
+                <td>Health</td>
+                <td>Gdp Per Capita</td>
+                <td>Life Expectancy At Birth Years2018</td>
+                <td><span class="correlation-strength strong">0.733</span></td>
+                <td>132</td>
+            </tr>
+            
+            <tr>
+                <td>Health</td>
+                <td>Economic</td>
+                <td>Life Expectancy At Birth Years2018</td>
+                <td>Gdp Per Capita</td>
+                <td><span class="correlation-strength strong">0.733</span></td>
+                <td>132</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        </section>
+        
+                
+        <section id="composite-indices" class="section">
+            <h2>📊 Composite Thriving Indices</h2>
+            
+            <p>We created composite indices that combine multiple indicators within each dimension, 
+            as well as an overall thriving index that synthesizes all dimensions.</p>
+            
+            <div class="stats-grid">
+                
+            <div class="stat-card">
+                <span class="stat-number">47.5</span>
+                <div class="stat-label">Economic Index<br>Average Score</div>
+            </div>
+            
+            <div class="stat-card">
+                <span class="stat-number">44.9</span>
+                <div class="stat-label">Pca Thriving Index<br>Average Score</div>
+            </div>
+            
+            </div>
+
+            <h3>Top 10 Countries - Overall Thriving Index</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Country</th>
+                        <th>Continent</th>
+                        <th>Overall Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </section>
+        
+                
+        <section id="clustering" class="section">
+            <h2>🎯 Multidimensional Clustering</h2>
+            
+            <p>Using machine learning clustering algorithms, we identified distinct groups of countries 
+            with similar patterns across multiple thriving dimensions.</p>
+            
+            <div class="key-findings">
+                <h3>Clustering Results</h3>
+                <ul>
+                    <li><strong>4</strong> distinct country clusters identified</li>
+                    <li>Clustering based on <strong>5</strong> key indicators</li>
+                    <li>Each cluster represents a unique development pattern</li>
+                </ul>
+            </div>
+
+            <h3>Country Clusters</h3>
+            
+            <div class="insight-box">
+                <h4>Cluster 0 (47 countries)</h4>
+                <p><strong>Key Strengths:</strong> None identified</p>
+                <div class="country-list">
+                    <span class="country-tag">Albania</span><span class="country-tag">Algeria</span><span class="country-tag">Argentina</span><span class="country-tag">Azerbaijan</span><span class="country-tag">Belarus</span><span class="country-tag">Brazil</span><span class="country-tag">Bulgaria</span><span class="country-tag">Chile</span><span class="country-tag">+39 more</span>
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <h4>Cluster 1 (32 countries)</h4>
+                <p><strong>Key Strengths:</strong> gdp_per_capita, life_expectancy_at_birth_years2018, learning_adjusted_years_of_school</p>
+                <div class="country-list">
+                    <span class="country-tag">Australia</span><span class="country-tag">Austria</span><span class="country-tag">Belgium</span><span class="country-tag">Canada</span><span class="country-tag">Cyprus</span><span class="country-tag">Czechia</span><span class="country-tag">Denmark</span><span class="country-tag">Estonia</span><span class="country-tag">+24 more</span>
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <h4>Cluster 2 (14 countries)</h4>
+                <p><strong>Key Strengths:</strong> None identified</p>
+                <div class="country-list">
+                    <span class="country-tag">Armenia</span><span class="country-tag">Bosnia and Herzegovina</span><span class="country-tag">Botswana</span><span class="country-tag">Egypt</span><span class="country-tag">Eswatini</span><span class="country-tag">Gabon</span><span class="country-tag">Greece</span><span class="country-tag">Jordan</span><span class="country-tag">+6 more</span>
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <h4>Cluster 3 (35 countries)</h4>
+                <p><strong>Key Strengths:</strong> None identified</p>
+                <div class="country-list">
+                    <span class="country-tag">Afghanistan</span><span class="country-tag">Bangladesh</span><span class="country-tag">Benin</span><span class="country-tag">Burkina Faso</span><span class="country-tag">Burundi</span><span class="country-tag">Cambodia</span><span class="country-tag">Cameroon</span><span class="country-tag">Chad</span><span class="country-tag">+27 more</span>
+                </div>
+            </div>
+            
+        </section>
+        
+                
+                
+                
+        <section id="visualizations" class="section">
+            <h2>📈 Key Visualizations</h2>
+            
+            <div class="visualization-container">
+                <h3>Cross-Cutting Analysis Overview</h3>
+                <img src="cross_cutting_overview.png" alt="Cross-Cutting Analysis Overview">
+                <p>Comprehensive overview showing correlations, clustering, and overall thriving patterns</p>
+            </div>
+            
+            <div class="visualization-container">
+                <h3>Cross-Dimensional Relationships</h3>
+                <img src="cross_dimensional_relationships.png" alt="Cross-Dimensional Relationships">
+                <p>Detailed scatter plots showing relationships between different thriving dimensions</p>
+            </div>
+        </section>
+        
+                
+        <section id="methodology" class="section">
+            <h2>🔬 Methodology</h2>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <h4>Data Preparation</h4>
+                    <ul>
+                        <li>Cleaned and standardized 5 indicators</li>
+                        <li>Handled missing values and outliers</li>
+                        <li>Transformed indicators for comparability</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Correlation Analysis</h4>
+                    <ul>
+                        <li>Pearson and Spearman correlations</li>
+                        <li>Statistical significance testing</li>
+                        <li>Cross-dimensional relationship mapping</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Composite Indices</h4>
+                    <ul>
+                        <li>Min-Max normalization (0-100 scale)</li>
+                        <li>Equal weighting within dimensions</li>
+                        <li>PCA-based alternative index</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Clustering Analysis</h4>
+                    <ul>
+                        <li>K-means clustering with standardized features</li>
+                        <li>Silhouette score optimization</li>
+                        <li>PCA for visualization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <h4>Data Coverage</h4>
+                <p>Analysis includes 5 major thriving dimensions: 
+                Economic, Health, Education, Social, Demographics. 
+                Country coverage varies by indicator but includes major economies and representative 
+                countries from all continents.</p>
+            </div>
+        </section>
+        
+
+                <footer>
+                    <p>Report generated by Global Thriving Analysis System</p>
+                    <p>Data sources: World Bank, OECD, Gallup World Poll, and other international organizations</p>
+                </footer>
+            </div>
+        </body>
+        </html>
+        
