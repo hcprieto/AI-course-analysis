@@ -1,0 +1,396 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Enhanced Health and Well-being Analysis - Global Thriving Study</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    line-height: 1.6;
+                    margin: 0;
+                    padding: 20px;
+                    background-color: #f5f5f5;
+                    color: #333;
+                }
+                .container {
+                    max-width: 1400px;
+                    margin: 0 auto;
+                    background-color: white;
+                    padding: 30px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+                }
+                h1 {
+                    color: #2c3e50;
+                    border-bottom: 3px solid #3498db;
+                    padding-bottom: 10px;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+                h2 {
+                    color: #34495e;
+                    border-left: 4px solid #3498db;
+                    padding-left: 15px;
+                    margin-top: 40px;
+                }
+                h3 {
+                    color: #2c3e50;
+                    margin-top: 25px;
+                }
+                .navigation {
+                    background-color: #ecf0f1;
+                    padding: 15px;
+                    border-radius: 5px;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+                .navigation a {
+                    display: inline-block;
+                    margin: 5px 10px;
+                    padding: 10px 20px;
+                    background-color: #3498db;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    transition: background-color 0.3s;
+                }
+                .navigation a:hover {
+                    background-color: #2980b9;
+                }
+                .stats-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 20px;
+                    margin: 20px 0;
+                }
+                .stat-card {
+                    background-color: #ecf0f1;
+                    padding: 20px;
+                    border-radius: 8px;
+                    text-align: center;
+                    border-left: 4px solid #3498db;
+                }
+                .stat-number {
+                    font-size: 2em;
+                    font-weight: bold;
+                    color: #2c3e50;
+                    display: block;
+                }
+                .stat-label {
+                    color: #7f8c8d;
+                    font-size: 0.9em;
+                    margin-top: 5px;
+                }
+                .chart-container {
+                    text-align: center;
+                    margin: 30px 0;
+                    background-color: #f8f9fa;
+                    padding: 20px;
+                    border-radius: 8px;
+                    border: 1px solid #dee2e6;
+                }
+                .chart-container img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 5px;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                }
+                .chart-title {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    color: #2c3e50;
+                    margin-bottom: 15px;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                    font-size: 0.9em;
+                }
+                th, td {
+                    border: 1px solid #bdc3c7;
+                    padding: 10px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #34495e;
+                    color: white;
+                    font-weight: bold;
+                }
+                tr:nth-child(even) {
+                    background-color: #f8f9fa;
+                }
+                .highlight {
+                    background-color: #fff3cd;
+                    border: 1px solid #ffeaa7;
+                    border-radius: 5px;
+                    padding: 15px;
+                    margin: 20px 0;
+                }
+                .success {
+                    background-color: #d4edda;
+                    border: 1px solid #c3e6cb;
+                    border-radius: 5px;
+                    padding: 15px;
+                    margin: 20px 0;
+                }
+                .alert {
+                    background-color: #f8d7da;
+                    border: 1px solid #f5c6cb;
+                    border-radius: 5px;
+                    padding: 15px;
+                    margin: 20px 0;
+                }
+                .correlation-strong { background-color: #d4edda; }
+                .correlation-moderate { background-color: #fff3cd; }
+                .correlation-weak { background-color: #f8d7da; }
+                .footer {
+                    margin-top: 50px;
+                    padding-top: 20px;
+                    border-top: 1px solid #bdc3c7;
+                    color: #7f8c8d;
+                    font-size: 0.9em;
+                    text-align: center;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="navigation">
+                    <a href="index.html">← Back to Dashboard</a>
+                    <a href="health_wellbeing.html">📋 Basic Analysis</a>
+                    <a href="#executive-summary">Executive Summary</a>
+                    <a href="#distributions">Distributions</a>
+                    <a href="#regional">Regional Analysis</a>
+                    <a href="#correlations">Correlations</a>
+                    <a href="#outliers">Outliers</a>
+                    <a href="#mortality">Mortality</a>
+                </div>
+
+                <h1>Enhanced Health and Well-being Analysis</h1>
+                <p style="text-align: center;"><strong>Analysis Date:</strong> September 17, 2025</p>
+
+                <div class="highlight">
+                    <h3>Key Research Questions</h3>
+                    <ul>
+                        <li>To what extent are global citizens thriving in terms of health and well-being?</li>
+                        <li>How do health outcomes, life satisfaction, and mortality patterns compare across countries and regions?</li>
+                        <li>What are the key relationships between different health indicators?</li>
+                        <li>Which countries represent outliers in terms of health outcomes?</li>
+                    </ul>
+                </div>
+
+                <section id="executive-summary">
+                    <h2>Executive Summary</h2>
+                    
+        <div class="stats-grid">
+        
+                    <div class="stat-card">
+                        <span class="stat-number">5.48</span>
+                        <div class="stat-label">Life Satisfaction (Mean)</div>
+                    </div>
+                
+                    <div class="stat-card">
+                        <span class="stat-number">72.89</span>
+                        <div class="stat-label">Life Expectancy (Mean)</div>
+                    </div>
+                
+                    <div class="stat-card">
+                        <span class="stat-number">9.25</span>
+                        <div class="stat-label">Self Harm Rate (Mean)</div>
+                    </div>
+                
+                <div class="stat-card">
+                    <span class="stat-number">1</span>
+                    <div class="stat-label">Strong Correlations</div>
+                </div>
+            
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">Significant Regional Differences</div>
+                </div>
+            </div>
+                </section>
+
+                <section id="distributions">
+                    <h2>Health Indicator Distributions</h2>
+                    <p>The distribution analysis examines the shape, central tendency, and spread of each health indicator across all countries.</p>
+                    <div class="chart-container">
+                        <div class="chart-title">Health Indicator Distributions</div>
+                        <img src="health_distributions.png" alt="Health Distributions">
+                    </div>
+                    
+        <h3>Statistical Summary</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Indicator</th>
+                    <th>Count</th>
+                    <th>Mean</th>
+                    <th>Std Dev</th>
+                    <th>Skewness</th>
+                    <th>Normal Distribution?</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <tr>
+                    <td>Life Satisfaction</td>
+                    <td>132</td>
+                    <td>5.485</td>
+                    <td>1.112</td>
+                    <td>-0.014</td>
+                    <td>Yes</td>
+                </tr>
+            
+                <tr>
+                    <td>Life Expectancy</td>
+                    <td>132</td>
+                    <td>72.889</td>
+                    <td>7.624</td>
+                    <td>-0.522</td>
+                    <td>No</td>
+                </tr>
+            
+                <tr>
+                    <td>Self Harm Rate</td>
+                    <td>132</td>
+                    <td>9.249</td>
+                    <td>5.927</td>
+                    <td>1.240</td>
+                    <td>No</td>
+                </tr>
+            
+            </tbody>
+        </table>
+        
+                </section>
+
+                <section id="regional">
+                    <h2>Regional Analysis</h2>
+                    <p>Regional analysis compares health indicators across continents using ANOVA tests to identify significant differences.</p>
+                    <div class="chart-container">
+                        <div class="chart-title">Health Indicators by Continent</div>
+                        <img src="regional_analysis.png" alt="Regional Analysis">
+                    </div>
+                    <h3>ANOVA Results</h3>
+            <div class="success">
+                <h4>Life Satisfaction</h4>
+                <p><strong>ANOVA Result:</strong> Significant (p = 0.0000)</p>
+                <p><strong>Interpretation:</strong> There are significant differences between continents.</p>
+            </div>
+            
+            <div class="success">
+                <h4>Life Expectancy</h4>
+                <p><strong>ANOVA Result:</strong> Significant (p = 0.0000)</p>
+                <p><strong>Interpretation:</strong> There are significant differences between continents.</p>
+            </div>
+            
+            <div class="success">
+                <h4>Self Harm Rate</h4>
+                <p><strong>ANOVA Result:</strong> Significant (p = 0.0001)</p>
+                <p><strong>Interpretation:</strong> There are significant differences between continents.</p>
+            </div>
+            
+                </section>
+
+                <section id="correlations">
+                    <h2>Correlation Analysis</h2>
+                    <p>Correlation analysis examines the relationships between different health indicators.</p>
+                    <div class="chart-container">
+                        <div class="chart-title">Correlation Analysis</div>
+                        <img src="correlation_analysis.png" alt="Correlation Analysis">
+                    </div>
+                    
+        <h3>Correlation Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Relationship</th>
+                    <th>Correlation (r)</th>
+                    <th>R²</th>
+                    <th>P-value</th>
+                    <th>Significance</th>
+                    <th>Strength</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <tr class="correlation-strong">
+                    <td>Life Satisfaction Vs Life Expectancy</td>
+                    <td>0.720</td>
+                    <td>0.519</td>
+                    <td>0.0000</td>
+                    <td>Significant</td>
+                    <td>Strong</td>
+                </tr>
+            
+                <tr class="correlation-weak">
+                    <td>Life Satisfaction Vs Self Harm Rate</td>
+                    <td>0.247</td>
+                    <td>0.061</td>
+                    <td>0.0043</td>
+                    <td>Significant</td>
+                    <td>Weak</td>
+                </tr>
+            
+                <tr class="correlation-weak">
+                    <td>Life Expectancy Vs Self Harm Rate</td>
+                    <td>0.186</td>
+                    <td>0.035</td>
+                    <td>0.0323</td>
+                    <td>Significant</td>
+                    <td>Weak</td>
+                </tr>
+            
+            </tbody>
+        </table>
+        
+                </section>
+
+                <section id="outliers">
+                    <h2>Outlier Analysis</h2>
+                    <p>Outlier analysis identifies countries with unusual health indicator values using Z-score methodology.</p>
+                    <div class="chart-container">
+                        <div class="chart-title">Outlier Detection</div>
+                        <img src="outlier_analysis.png" alt="Outlier Analysis">
+                    </div>
+                    <h3>Identified Outlier Countries</h3>
+                <h4>Life Satisfaction</h4>
+                <div class="alert">
+                    <strong>Z-score Outliers (|z| > 2.5):</strong> Afghanistan
+                </div>
+                
+                <h4>Life Expectancy</h4>
+                <div class="success">
+                    <strong>No significant outliers detected.</strong>
+                </div>
+                
+                <h4>Self Harm Rate</h4>
+                <div class="alert">
+                    <strong>Z-score Outliers (|z| > 2.5):</strong> Eswatini, Lithuania, Russia, South Korea
+                </div>
+                
+                </section>
+
+                <section id="mortality">
+                    <h2>Mortality Patterns</h2>
+                    <p>Mortality analysis examines the leading causes of death globally and by continent.</p>
+                    <div class="chart-container">
+                        <div class="chart-title">Mortality Patterns</div>
+                        <img src="mortality_analysis.png" alt="Mortality Analysis">
+                    </div>
+                </section>
+
+                <div class="footer">
+                    <p>Generated by Enhanced Global Thriving Analysis System</p>
+                    <p>Data Source: World Data 2.0-Data.csv</p>
+                    <p>Analysis completed on September 17, 2025 at 07:40 PM</p>
+                    <p>Statistical methods: ANOVA, correlation analysis, outlier detection, descriptive statistics</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Thriving Analysis - Main Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .research-question {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .research-question h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .analysis-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .card-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+        .card-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .card-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        .card-status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-upcoming {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .stats-overview {
+            background-color: #ecf0f1;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .stat-item {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .methodology-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .methodology-link a {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .methodology-link a:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+        }
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+            text-align: center;
+            color: #6c757d;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Global Thriving Analysis</h1>
+        <div class="subtitle">Comprehensive Analysis of Global Citizen Well-being and Development Indicators</div>
+
+        <div class="research-question">
+            <h2>Central Research Question</h2>
+            <p><strong>To what extent are global citizens thriving? How do these data compare by country?</strong></p>
+            <p>This analysis examines multiple dimensions of human thriving across countries worldwide, including health outcomes, economic indicators, educational attainment, infrastructure access, and governance patterns.</p>
+        </div>
+
+        <div class="stats-overview">
+            <h2 style="margin-top: 0; color: #2c3e50;">Dataset Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">132</span>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <div class="stat-label">Continents</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">18</span>
+                    <div class="stat-label">Indicators</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2018-2020</span>
+                    <div class="stat-label">Data Years</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px;">Analysis Modules</h2>
+
+        <div class="analysis-grid">
+            <a href="enhanced_health_analysis.html" class="analysis-card">
+                <div class="card-header">
+                    <div class="card-icon">🏥</div>
+                    <h3 class="card-title">Health & Well-being (Enhanced)</h3>
+                </div>
+                <p class="card-description">
+                    Comprehensive analysis with visualizations, regional ANOVA tests, outlier detection, and correlation analysis of health indicators.
+                </p>
+                <div class="card-status status-completed">✅ Enhanced Analysis Complete</div>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #6c757d;">
+                    <strong>Features:</strong> Interactive charts, statistical testing, outlier identification
+                </p>
+                <p style="margin-top: 5px; font-size: 0.8em; color: #6c757d;">
+                    <a href="health_wellbeing.html" style="color: #3498db; text-decoration: none;">→ View Basic Analysis</a>
+                </p>
+            </a>
+
+            <div class="analysis-card" style="opacity: 0.7;">
+                <div class="card-header">
+                    <div class="card-icon">💰</div>
+                    <h3 class="card-title">Economic Indicators</h3>
+                </div>
+                <p class="card-description">
+                    Examination of GDP per capita, unemployment rates, and their relationships with well-being outcomes.
+                </p>
+                <div class="card-status status-upcoming">📋 Planned</div>
+            </div>
+
+            <div class="analysis-card" style="opacity: 0.7;">
+                <div class="card-header">
+                    <div class="card-icon">🎓</div>
+                    <h3 class="card-title">Education Analysis</h3>
+                </div>
+                <p class="card-description">
+                    Analysis of learning-adjusted years of schooling and educational outcomes by region and development level.
+                </p>
+                <div class="card-status status-upcoming">📋 Planned</div>
+            </div>
+
+            <div class="analysis-card" style="opacity: 0.7;">
+                <div class="card-header">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">Infrastructure & Basic Needs</h3>
+                </div>
+                <p class="card-description">
+                    Evaluation of electricity access rates and their correlation with quality of life indicators.
+                </p>
+                <div class="card-status status-upcoming">📋 Planned</div>
+            </div>
+
+            <div class="analysis-card" style="opacity: 0.7;">
+                <div class="card-header">
+                    <div class="card-icon">🏛️</div>
+                    <h3 class="card-title">Governance & Rights</h3>
+                </div>
+                <p class="card-description">
+                    Text analysis of UN General Assembly speeches to identify governance themes and democratic values.
+                </p>
+                <div class="card-status status-upcoming">📋 Planned</div>
+            </div>
+
+            <div class="analysis-card" style="opacity: 0.7;">
+                <div class="card-header">
+                    <div class="card-icon">🔗</div>
+                    <h3 class="card-title">Cross-cutting Analysis</h3>
+                </div>
+                <p class="card-description">
+                    Multivariate analysis, country clustering, and identification of patterns across all dimensions of thriving.
+                </p>
+                <div class="card-status status-upcoming">📋 Planned</div>
+            </div>
+        </div>
+
+        <div class="methodology-link">
+            <a href="#" onclick="alert('Methodology documentation coming soon!')">View Analysis Methodology</a>
+        </div>
+
+        <div class="footer">
+            <p><strong>Global Thriving Analysis System</strong></p>
+            <p>Data Source: World Data 2.0-Data.csv</p>
+            <p>Analysis Framework: Univariate → Bivariate → Multivariate Statistical Methods</p>
+            <p>Generated on December 17, 2024</p>
+        </div>
+    </div>
+</body>
+</html>

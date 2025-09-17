@@ -1,0 +1,83 @@
+Research Questions: To what extent are global citizens thriving? How do these data compare by country?,,,,,,
+Construct,Measure(s),Question,Analysis type,Visualization,Results,"Insights, reflections, questions"
+"Health, Access to basic needs","Life satisfaction
+Access to electricity",Is there a relationship between a population's level of access to electricity and their overall satisfaction in life?,Correlation,Scatter plot with trendline,Rsquared score of 0.54,"According to ChatGPT, scores between 0.3 and 0.5 are meaningful. I've read similarly in stats articles/textbooks.
+
+Clearly can't claim causality here but interesting nonetheless, particularly because the rates of access to electricity are high overall."
+Access to basic needs,"✅ % of population with access to electricity (2020)
+
+✅ Number of people with access to electricity (2020)
+
+(Could also consider GDP per Capita indirectly, but it’s more economic than needs-based.)","- What % of the population has reliable access to electricity across countries?
+- Which regions have the lowest access rates?
+- How does access to basic infrastructure correlate with life satisfaction?","- Descriptive statistics (mean, % with electricity)
+- Cross-country comparison (ranking, clustering)
+- Correlation analysis with life satisfaction/health","- Choropleth map (world map shaded by % with electricity)
+- Bar chart (top/bottom 10 countries by access)
+- Time-series line chart (if longitudinal data)",,
+Economic,"GDP per capita
+Unemployment rate","- How do GDP per capita levels differ across countries?
+- What is the relationship between unemployment and life satisfaction?
+- Do wealthier countries show higher thriving on other dimensions (education, health)?","- Descriptive + comparative analysis (GDP per capita, unemployment)
+- Correlation/regression with life satisfaction, education, health
+- Cluster analysis (high-GDP/low-unemployment vs low-GDP/high-unemployment countries)","- Scatterplot (GDP per capita vs life satisfaction)
+- Bubble chart (GDP, unemployment, population size as bubble size)
+- Cluster heatmap (group countries by economic + wellbeing indicators)",,
+Education,Learning-Adjusted Years of School,"- What is the average number of learning-adjusted school years across countries?
+- How does educational attainment correlate with GDP per capita and life expectancy?
+- Do countries with higher education levels also report higher life satisfaction?","- Comparative analysis of years of schooling across countries
+- Regression analysis with GDP, life expectancy, life satisfaction
+- Equity analysis (if disaggregated by gender/region)","- Bar/column chart (learning-adjusted years by country)
+- Scatterplot (education vs GDP or life expectancy)
+- Boxplot (regional distributions)",,
+Environment,"⚠️ None of the listed indicators directly measure environmental quality (air, water, CO₂ emissions, biodiversity, etc.).
+
+❌ Indicators provided are not suitable here.","- Which countries show the lowest environmental sustainability (e.g., highest CO₂ per capita)?
+- Is there a trade-off between GDP per capita and environmental impact?
+- Do countries with higher environmental protection policies also show higher wellbeing?","- Comparative trend analysis (CO₂, renewable share)
+- Trade-off analysis (environment vs GDP)
+- Cluster analysis (eco-friendly vs polluting countries)","- Choropleth map (CO₂ emissions per capita)
+- Bubble chart (GDP vs CO₂, bubble = renewable share)
+- Radar chart (countries’ environmental performance across multiple indicators)",,
+Equity,"⚠️ None of the listed indicators directly capture inequality (e.g., Gini coefficient, gender parity, minority representation).
+
+❌ No strong match among current indicators.","- What is the level of income inequality in each country?
+- Are there gender gaps in education and employment?
+- How does inequality affect life satisfaction and health outcomes?","- Inequality metrics (Gini coefficient, gender parity)
+- Comparative analysis across income quintiles or gender
+- Regression (inequality vs life satisfaction/health outcomes)","- Lorenz curve (income inequality)
+- Boxplot (gender gaps in education/work by region)
+- Heatmap (inequality metrics across countries)",,
+"""Freedom, Rights, + Governance""","⚠️ Could potentially be proxied through UN Speeches (if content analysis was done on themes of political freedom, human rights, etc.), but nothing here directly measures freedom.
+
+❌ No clear indicator provided.","- How do countries score on measures of political and civil freedoms?
+- Is greater freedom associated with higher life satisfaction?
+- Are there regions where freedoms are restricted but economic outcomes remain high?
+- Which countries demonstrate stronger governance performance?
+- How does corruption relate to GDP per capita and health outcomes?
+- Do countries with stronger governance also report higher subjective wellbeing?","- Index-based comparison (Freedom House, Press Freedom)
+- Text analysis of UN speeches (sentiment/topic modeling)
+- Correlation with subjective wellbeing
+- Index-based comparative analysis (governance, corruption)
+- Regression (governance vs GDP, life expectancy)
+- Text mining for speeches (themes of rights/democracy)","- Choropleth map (freedom scores)
+- Stacked bar chart (proportion of countries free/partly free/not free)
+- Word cloud / topic network (themes from UN speeches)
+- Bar/column chart (governance/corruption scores by country)
+- Spider/radar chart (governance dimensions per country)
+- Network graph (similarities in UN speech themes across countries)",,
+Health,"Life expectancy at birth (years)
+Life satisfaction in Cantril Ladder
+Most Common Cause of Death
+Second Most Common Cause of Death
+Third Most Common Cause of Death
+Number of deaths due to self-harm","- What is the average life expectancy across countries?
+- Which diseases are the leading causes of death in different regions?
+- How do self-harm rates differ across income levels?
+- How closely does subjective wellbeing (life satisfaction) align with objective health outcomes?","- Descriptive analysis (life expectancy, mortality rates)
+- Cause-of-death comparisons (developed vs developing countries)
+- Correlation/regression (health indicators vs life satisfaction)
+- Cluster analysis (healthy-aging vs high-burden countries)""","- Line chart (life expectancy trends over time)
+- Cause-of-death stacked bar (by region)
+- Scatterplot (self-harm rate vs life satisfaction)
+- Bubble chart (life expectancy vs GDP, bubble = population size)",,
